@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.GameplayerMapper">
+
+    <resultMap id="BaseResultMap" type="com.example.demo.pojo.po.Gameplayer">
+            <id property="id" column="id" jdbcType="VARCHAR"/>
+            <result property="gameplayer" column="gameplayer" jdbcType="VARCHAR"/>
+            <result property="sex" column="sex" jdbcType="CHAR"/>
+            <result property="grade" column="Grade" jdbcType="VARCHAR"/>
+            <result property="hp" column="HP" jdbcType="INTEGER"/>
+            <result property="magic" column="magic" jdbcType="DATE"/>
+            <result property="strength1" column="strength1" jdbcType="INTEGER"/>
+            <result property="intelligence" column="intelligence" jdbcType="INTEGER"/>
+            <result property="physical" column="physical" jdbcType="INTEGER"/>
+            <result property="strength" column="strength" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,gameplayer,sex,
+        Grade,HP,magic,
+        strength1,intelligence,physical,
+        strength
+    </sql>
+</mapper>
