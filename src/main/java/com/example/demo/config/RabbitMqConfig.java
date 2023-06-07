@@ -173,4 +173,23 @@ public class RabbitMqConfig {
         rabbitTemplate.setMandatory(true);
         return rabbitTemplate;
     }
+
+
+    @Bean
+    public DirectExchange ticketCreateExchange() {
+//        Map<String,Object> args = new HashMap<>();
+//        args.put("x-delayed-type","direct");
+        return ExchangeBuilder.directExchange("order.create").build();
+//        return new CustomExchange("customerex", "x-delayed-message", true, false, args);
+    }
+
+    @Bean
+    public Queue ticketCreateQueue() {
+        return QueueBuilder.durable("order.create.queue").build();
+    }
+
+    @Bean
+    public Binding createTicketBinding(DirectExchange ticketCreateExchange, Queue ticketCreateQueue) {
+        return BindingBuilder.bind(ticketCreateQueue).to(ticketCreateExchange).with("ticket.create");
+    }
 }

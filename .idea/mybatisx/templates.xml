@@ -27,7 +27,7 @@
                   <option name="fileName" value="${domain.fileName}Mapper" />
                   <option name="fileNameWithSuffix" value="${domain.fileName}Mapper.java" />
                   <option name="modulePath" value="$PROJECT_DIR$" />
-                  <option name="packageName" value="com.example.demo.dao" />
+                  <option name="packageName" value="${domain.basePackage}.mapper" />
                 </ModuleInfoGo>
                 <ModuleInfoGo>
                   <option name="basePath" value="src/main/resources" />
@@ -68,8 +68,12 @@
             <option name="tableUIInfoList">
               <list>
                 <TableUIInfo>
-                  <option name="className" value="Gameplayer" />
-                  <option name="tableName" value="gameplayer" />
+                  <option name="className" value="Ticket" />
+                  <option name="tableName" value="ticket" />
+                </TableUIInfo>
+                <TableUIInfo>
+                  <option name="className" value="Order" />
+                  <option name="tableName" value="order" />
                 </TableUIInfo>
               </list>
             </option>

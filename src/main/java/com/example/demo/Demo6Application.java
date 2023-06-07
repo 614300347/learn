@@ -11,7 +11,7 @@ import springfox.documentation.spring.web.SpringfoxWebMvcConfiguration;
 
 @SpringBootApplication
 @MapperScan("com.example.demo.dao")
-
+@MapperScan("com.example.demo.mapper")
 public class Demo6Application  {
 
     public static void main(String[] args) {
