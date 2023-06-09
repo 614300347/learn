@@ -8,6 +8,7 @@ import com.example.demo.pojo.po.TestUserPo;
 import com.example.demo.service.GameplayerService;
 import com.example.demo.service.TestUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -42,9 +43,15 @@ public class TestController {
     @RequestMapping("/test2")
     public void test2() {
         QueryWrapper<Gameplayer> wrapper = new QueryWrapper<>();
-        wrapper.in("sex","M");
+        wrapper.in("sex", "M");
         List<Gameplayer> gameplayers = gameplayerService.list(wrapper);
         System.out.println("gameplayers.size() = " + gameplayers.size());
+
+    }
+
+
+    @GetMapping("/testMqAndRedis")
+    public void testMqAndRedis() {
 
     }
 
