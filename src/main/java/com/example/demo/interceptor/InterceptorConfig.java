@@ -15,6 +15,7 @@ import springfox.documentation.spring.web.SpringfoxWebMvcConfiguration;
  * @Date:2023/5/5 14:38
  * @Version:1.0
  * @Description:
+ * 学习：静态资源放行
  */
 @Component
 @EnableWebMvc
@@ -38,5 +39,10 @@ public class InterceptorConfig
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("doc.html").addResourceLocations("classpath:/META-INF/resources/");
         registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
+//        registry.addResourceHandler("login.html")
+//                .addResourceLocations("classpath:/resources/static/");
+        registry.addResourceHandler("/**").addResourceLocations("classpath:/META-INF/resources/")
+                .addResourceLocations("classpath:/resources/").addResourceLocations("classpath:/static/")
+                .addResourceLocations("classpath:/public/");
     }
 }

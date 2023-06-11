@@ -17,10 +17,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class TicketConsumer {
 
-    @RabbitListener(queues = {"test4"})
-    public void consmumeTest4(Message message, Channel channel) {
-        MessageProperties messageProperties = message.getMessageProperties();
-        String messageId = messageProperties.getMessageId();
-//        channel.basicNack();
-    }
+//    @RabbitListener(queues = {"test4"})
+//    public void consmumeTest4(Message message, Channel channel) {
+//        MessageProperties messageProperties = message.getMessageProperties();
+//        String messageId = messageProperties.getMessageId();
+////        channel.basicNack();
+//    }
 }
