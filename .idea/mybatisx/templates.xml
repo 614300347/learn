@@ -68,12 +68,24 @@
             <option name="tableUIInfoList">
               <list>
                 <TableUIInfo>
-                  <option name="className" value="Order" />
-                  <option name="tableName" value="order" />
+                  <option name="className" value="SysRole" />
+                  <option name="tableName" value="sys_role" />
                 </TableUIInfo>
                 <TableUIInfo>
-                  <option name="className" value="Ticket" />
-                  <option name="tableName" value="ticket" />
+                  <option name="className" value="SysMenu" />
+                  <option name="tableName" value="sys_menu" />
+                </TableUIInfo>
+                <TableUIInfo>
+                  <option name="className" value="SysRoleMenu" />
+                  <option name="tableName" value="sys_role_menu" />
+                </TableUIInfo>
+                <TableUIInfo>
+                  <option name="className" value="SysRoleUser" />
+                  <option name="tableName" value="sys_role_user" />
+                </TableUIInfo>
+                <TableUIInfo>
+                  <option name="className" value="SysUser" />
+                  <option name="tableName" value="sys_user" />
                 </TableUIInfo>
               </list>
             </option>

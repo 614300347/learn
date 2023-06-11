@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.TicketMapper">
+
+    <resultMap id="BaseResultMap" type="com.example.demo.pojo.po.Ticket">
+            <id property="id" column="id" jdbcType="VARCHAR"/>
+            <result property="type" column="type" jdbcType="CHAR"/>
+            <result property="typeName" column="type_name" jdbcType="VARCHAR"/>
+            <result property="totalNum" column="total_num" jdbcType="INTEGER"/>
+            <result property="price" column="price" jdbcType="DECIMAL"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,type,type_name,
+        total_num,price
+    </sql>
+</mapper>
