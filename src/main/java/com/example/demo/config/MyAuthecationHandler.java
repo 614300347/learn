@@ -2,6 +2,7 @@ package com.example.demo.config;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Collection;
 
 /**
  * @author :Ligou
@@ -36,7 +38,15 @@ public class MyAuthecationHandler implements AuthenticationSuccessHandler, Authe
         response.setCharacterEncoding("UTF-8");
         response.setContentType("application/json;charset=utf-8");
         //返回json到前端
-        response.sendRedirect("http://localhost:9090/testredis");
+        Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
+        for (GrantedAuthority authority : authorities) {
+            String authority1 = authority.getAuthority();
+            if ("ROLE_ADMIN".equals(authority1)){
+                response.sendRedirect("http://localhost:9090/doc.html");
+            }
+        }
+
+//        response.sendRedirect("http://localhost:9090/testredis");
 //        PrintWriter writer = response.getWriter();
 //        writer.println("登录成功");
 //        writer.flush();

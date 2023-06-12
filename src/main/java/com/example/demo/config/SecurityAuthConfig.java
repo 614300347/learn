@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.FormLoginConfigurer;
 import org.springframework.security.config.annotation.web.configurers.PasswordManagementConfigurer;
@@ -25,6 +27,7 @@ import javax.annotation.Resource;
  * @Description:
  */
 @Configuration
+@EnableGlobalMethodSecurity(securedEnabled=true,prePostEnabled=true)
 public class SecurityAuthConfig {
 
     @Resource
@@ -37,6 +40,9 @@ public class SecurityAuthConfig {
 
     @Autowired
     private MyUserDetailsServiceImpl myUserDetailsServiceImpl;
+
+
+
 
     //注入过滤链条
     @Bean
@@ -54,18 +60,19 @@ public class SecurityAuthConfig {
 //                .httpBasic(withDefaults());
 
 
-        http.formLogin().loginPage("/login.html").loginProcessingUrl("/login").defaultSuccessUrl("/index.html").and().authorizeHttpRequests().mvcMatchers("/security/**")  //匹配url
-                .hasAnyAuthority("student:delete") //拥有这个权限的用户能访问上面的url
-                .mvcMatchers("/testredis")  //同上
-                .hasAnyAuthority("ROLE_ADMIN")
-                .mvcMatchers("/authtest1")
-                .hasAnyAuthority("ROLE_ADMIN")
-                .mvcMatchers("/doc.html")
-                .hasAnyAuthority("ROLE_ADMIN")
-                .mvcMatchers("/testredis1/**")
-                .hasAnyAuthority("ROLE_ADMIN")
-                .mvcMatchers("//lesson/**")
-                .hasAnyAuthority("ROLE_ADMIN")
+        http.formLogin().loginPage("/login.html").loginProcessingUrl("/login").defaultSuccessUrl("/index.html")
+//                .and().authorizeHttpRequests().mvcMatchers("/security/**")  //匹配url
+//                .hasAnyAuthority("student:delete") //拥有这个权限的用户能访问上面的url
+//                .mvcMatchers("/doc.html")
+//                .hasAnyAuthority("ROLE_ADMIN")
+//                .mvcMatchers("/testredis")  //同上
+//                .hasAnyAuthority("ROLE_ADMIN")
+//                .mvcMatchers("/authtest1")
+//                .hasAnyAuthority("ROLE_ADMIN")
+//                .mvcMatchers("/testredis1/**")
+//                .hasAnyAuthority("ROLE_ADMIN")
+//                .mvcMatchers("//lesson/**")
+//                .hasAnyAuthority("ROLE_ADMIN")
                 .and()
                 .authorizeHttpRequests()
                 .mvcMatchers("/login.html", "/index.html", "/login").permitAll()

@@ -6,6 +6,8 @@ import org.springframework.amqp.core.*;
 import org.springframework.amqp.rabbit.annotation.QueueBinding;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -190,6 +192,28 @@ public class RabbitMqConfig {
 
     @Bean
     public Binding createTicketBinding(DirectExchange ticketCreateExchange, Queue ticketCreateQueue) {
-        return BindingBuilder.bind(ticketCreateQueue).to(ticketCreateExchange).with("ticket.create");
+        return BindingBuilder.bind(ticketCreateQueue).to(ticketCreateExchange).with("order.create.rouding");
+    }
+
+
+    @Bean(name = "lessonqueue")
+    public Queue lessonQueue() {
+        return QueueBuilder.durable("lesson.queue").withArgument("x-message-ttl",8000)
+                .withArgument("x-dead-letter-exchange","order.create")
+                .withArgument("x-dead-letter-routing-key","order.create.rouding")
+                .build();
+    }
+
+    @Bean(name = "lessonexchange")
+    public Exchange lessonExchange() {
+        Map<String, Object> args = new HashMap<>();
+        args.put("x-delayed-type", "direct");
+        CustomExchange customExchange = new CustomExchange("lessonexchange", "x-delayed-message", true, false, args);
+        return customExchange;
+    }
+
+    @Bean
+    public Binding bindLesson(@Autowired @Qualifier("lessonexchange") Exchange lessonexchange, @Autowired @Qualifier("lessonqueue") Queue lessonqueue ) {
+        return BindingBuilder.bind(lessonqueue).to(lessonexchange).with("lesson").noargs();
     }
 }
